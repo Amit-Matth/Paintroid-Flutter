@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:paintroid/core/commands/command_implementation/command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/graphic_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/line_command.dart';
-import 'package:paintroid/core/commands/command_implementation/graphic/shape/circle_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/oval_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/heart_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/square_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/star_shape_command.dart';
 import 'package:paintroid/core/tools/line_tool/vertex.dart';
 import 'package:paintroid/core/tools/line_tool/vertex_stack.dart';
 import 'package:paintroid/core/tools/tool_data.dart';
@@ -108,11 +110,14 @@ class CommandManager {
       return ToolData.LINE;
     } else if (command.runtimeType == SquareShapeCommand) {
       return ToolData.SHAPES;
-    } else if (command.runtimeType == CircleShapeCommand) {
+    } else if (command.runtimeType == OvalShapeCommand) {
       return ToolData.SHAPES;
-    }
-    else if (command.runtimeType == SprayCommand) {
+    } else if (command.runtimeType == SprayCommand) {
       return ToolData.SPRAY;
+    } else if (command.runtimeType == StarShapeCommand) {
+      return ToolData.SHAPES;
+    } else if (command.runtimeType == HeartShapeCommand) {
+      return ToolData.SHAPES;
     } else {
       return ToolData.BRUSH;
     }

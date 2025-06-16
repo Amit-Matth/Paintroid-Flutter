@@ -2,10 +2,13 @@ import 'dart:ui';
 
 import 'package:paintroid/core/commands/command_implementation/graphic/line_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/path_command.dart';
-import 'package:paintroid/core/commands/command_implementation/graphic/shape/circle_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/oval_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/heart_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/square_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/star_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/spray_command.dart';
 import 'package:paintroid/core/commands/path_with_action_history.dart';
+import 'package:paintroid/core/enums/shape_style.dart';
 
 class CommandFactory {
   const CommandFactory();
@@ -30,15 +33,49 @@ class CommandFactory {
     Offset topRight,
     Offset bottomLeft,
     Offset bottomRight,
+    ShapeStyle style,
   ) =>
-      SquareShapeCommand(paint, topLeft, topRight, bottomLeft, bottomRight);
+      SquareShapeCommand(
+          paint, topLeft, topRight, bottomLeft, bottomRight, style);
 
-  CircleShapeCommand createCircleShapeCommand(
+  OvalShapeCommand createOvalShapeCommand(
     Paint paint,
-    double radius,
+    double width,
+    double height,
     Offset center,
+    ShapeStyle style,
+    double angle,
   ) =>
-      CircleShapeCommand(paint, radius, center);
+      OvalShapeCommand(paint, width, height, center, style, angle);
+
+  StarShapeCommand createStarShapeCommand(
+    Paint paint,
+    int numPoints,
+    double angle,
+    Offset center,
+    ShapeStyle style,
+    double radiusX,
+    double radiusY,
+  ) =>
+      StarShapeCommand(
+        paint,
+        numPoints,
+        angle,
+        center,
+        style,
+        radiusX,
+        radiusY,
+      );
+
+  HeartShapeCommand createHeartShapeCommand(
+    Paint paint,
+    double width,
+    double height,
+    double angle,
+    Offset center,
+    ShapeStyle style,
+  ) =>
+      HeartShapeCommand(paint, width, height, angle, center, style);
 
   SprayCommand createSprayCommand(List<Offset> points, Paint paint) {
     return SprayCommand(points, paint);

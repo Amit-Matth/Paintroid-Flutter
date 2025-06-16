@@ -1,4 +1,1 @@
-enum ShapeType {
-  circle,
-  square,
-}
+enum ShapeType { oval, square, star, heart }

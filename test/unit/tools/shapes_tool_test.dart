@@ -1,13 +1,15 @@
 import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:paintroid/core/commands/command_factory/command_factory.dart';
-import 'package:paintroid/core/commands/command_implementation/graphic/shape/circle_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/heart_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/oval_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/square_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/star_shape_command.dart';
 import 'package:paintroid/core/commands/command_manager/command_manager.dart';
 import 'package:paintroid/core/enums/shape_type.dart';
 import 'package:paintroid/core/enums/tool_types.dart';
-import 'package:paintroid/core/tools/implementation/shapes_tool/bounding_box.dart';
-import 'package:paintroid/core/tools/implementation/shapes_tool/shapes_tool.dart';
+import 'package:paintroid/core/tools/bounding_box.dart';
+import 'package:paintroid/core/tools/implementation/shapes_tool.dart';
 
 void main() {
   late ShapesTool sut;
@@ -26,16 +28,29 @@ void main() {
       commandFactory: const CommandFactory(),
       commandManager: CommandManager(),
       boundingBox: boundingBox,
-      isRotating: false,
       shapeType: ShapeType.square,
     );
   });
 
-  test('onCheckmark: should generate CircleShapeCommand', () {
-    sut.shapeType = ShapeType.circle;
+  test('onCheckmark: should generate HearthShapeCommand', () {
+    sut.shapeType = ShapeType.heart;
     sut.onCheckmark(paint);
     final command = sut.commandManager.undoStack.last;
-    expect(command.runtimeType, CircleShapeCommand);
+    expect(command.runtimeType, HeartShapeCommand);
+  });
+
+  test('onCheckmark: should generate StarShapeCommand', () {
+    sut.shapeType = ShapeType.star;
+    sut.onCheckmark(paint);
+    final command = sut.commandManager.undoStack.last;
+    expect(command.runtimeType, StarShapeCommand);
+  });
+
+  test('onCheckmark: should generate OvalShapeCommand', () {
+    sut.shapeType = ShapeType.oval;
+    sut.onCheckmark(paint);
+    final command = sut.commandManager.undoStack.last;
+    expect(command.runtimeType, OvalShapeCommand);
   });
 
   test('onCheckmark: should generate SquareShapeCommand', () {

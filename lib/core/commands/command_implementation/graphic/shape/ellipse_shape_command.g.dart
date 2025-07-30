@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'oval_shape_command.dart';
+part of 'ellipse_shape_command.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-OvalShapeCommand _$OvalShapeCommandFromJson(Map<String, dynamic> json) =>
-    OvalShapeCommand(
+EllipseShapeCommand _$EllipseShapeCommandFromJson(Map<String, dynamic> json) =>
+    EllipseShapeCommand(
       const PaintConverter().fromJson(json['paint'] as Map<String, dynamic>),
       (json['width'] as num).toDouble(),
       (json['height'] as num).toDouble(),
@@ -15,10 +15,11 @@ OvalShapeCommand _$OvalShapeCommandFromJson(Map<String, dynamic> json) =>
       $enumDecode(_$ShapeStyleEnumMap, json['style']),
       (json['angle'] as num).toDouble(),
       version: (json['version'] as num?)?.toInt(),
-      type: json['type'] as String? ?? SerializerType.OVAL_SHAPE_COMMAND,
+      type: json['type'] as String? ?? SerializerType.ELLIPSE_SHAPE_COMMAND,
     );
 
-Map<String, dynamic> _$OvalShapeCommandToJson(OvalShapeCommand instance) =>
+Map<String, dynamic> _$EllipseShapeCommandToJson(
+        EllipseShapeCommand instance) =>
     <String, dynamic>{
       'paint': const PaintConverter().toJson(instance.paint),
       'width': instance.width,

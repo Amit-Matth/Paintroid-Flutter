@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:paintroid/core/commands/command_factory/command_factory.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/heart_shape_command.dart';
-import 'package:paintroid/core/commands/command_implementation/graphic/shape/oval_shape_command.dart';
+import 'package:paintroid/core/commands/command_implementation/graphic/shape/ellipse_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/square_shape_command.dart';
 import 'package:paintroid/core/commands/command_implementation/graphic/shape/star_shape_command.dart';
 import 'package:paintroid/core/commands/command_manager/command_manager.dart';
@@ -15,14 +15,13 @@ void main() {
   late ShapesTool sut;
   late BoundingBox boundingBox;
 
-  const Offset topLeft = Offset(0, 0);
-  const Offset topRight = Offset(200, 0);
-  const Offset bottomLeft = Offset(0, 200);
-  const Offset bottomRight = Offset(200, 200);
+  const Offset rectTopLeft = Offset(0, 0);
+  const Offset rectBottomRight = Offset(200, 200);
   Paint paint = Paint();
 
   setUp(() {
-    boundingBox = BoundingBox(topLeft, topRight, bottomLeft, bottomRight);
+    final Rect initialRect = Rect.fromPoints(rectTopLeft, rectBottomRight);
+    boundingBox = BoundingBox.fromRect(initialRect);
     sut = ShapesTool(
       type: ToolType.SHAPES,
       commandFactory: const CommandFactory(),
@@ -46,11 +45,11 @@ void main() {
     expect(command.runtimeType, StarShapeCommand);
   });
 
-  test('onCheckmark: should generate OvalShapeCommand', () {
-    sut.shapeType = ShapeType.oval;
+  test('onCheckmark: should generate EllipseShapeCommand', () {
+    sut.shapeType = ShapeType.ellipse;
     sut.onCheckmark(paint);
     final command = sut.commandManager.undoStack.last;
-    expect(command.runtimeType, OvalShapeCommand);
+    expect(command.runtimeType, EllipseShapeCommand);
   });
 
   test('onCheckmark: should generate SquareShapeCommand', () {
